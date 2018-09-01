@@ -29,13 +29,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="md-form" action="'fileupload/' + reviewName" method="post" enctype="multipart/form-data" id="uploadFileForm">
+                        <form class="md-form" :action="'/fileupload/'+ reviewName" method="post" enctype="multipart/form-data" id="uploadFileForm">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                                 </div>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input"  v-on:change="onChange" id="reviewFileInput" aria-describedby="inputGroupFileAddon01">
+                                    <input name="uploadFile" type="file" class="custom-file-input"  v-on:change="onChange" id="reviewFileInput" aria-describedby="inputGroupFileAddon01">
                                     <label class="custom-file-label" for="reviewFileInput">Choose file</label>
                                 </div>
                             </div>

@@ -4,8 +4,10 @@ const port = process.env.PORT || 3000;
 const www = process.env.WWW || './www';
 const fs = require('fs');
 const path = require('path');
+const fileUpload = require('express-fileupload');
 var filePaths = "C:\\code\\Reviews";
 
+app.use(fileUpload());
 app.use(express.static(www));
 console.log(`serving ${www}`);
 
@@ -52,5 +54,15 @@ app.get('/reviewfiles/:reviewName', (req, res) => {
 });
 
 app.post('/fileupload/:reviewName', (req, res) => {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
 
+  var file = req.files.uploadFile
+  var filepath = path.join(filePaths, req.params.reviewName);
+  file.mv(path.join(filepath, file.name), function(err) {
+    if (err)
+      return res.status(500).send(err);
+  
+    res.redirect('/ReviewOverview/reviewoverview.html?reviewName=' + req.params.reviewName);
+  });
 });
