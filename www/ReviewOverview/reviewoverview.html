@@ -14,43 +14,53 @@
             <div class="row">
                 <div class = "col jumbotron">
                     <h1>
-                        Reviews
-                        <button data-toggle="modal" data-target="#modalNewReview" class="btn btn-primary" style="float:right;float:top;">Create</button>
+                        Modified Files
+                        <button data-toggle="modal" data-target="#modalAddFile" class="btn btn-primary" style="float:right;float:top;">Add</button>
                     </h1>
                 </div>
             </div>
-            <div class="modal fade" id="modalNewReview" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalAddFile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document" id="modalVue">
                     <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="reviewNameTitle">Review Name</h5>
+                        <h5 class="modal-title" id="modalTitle">Please Select a File</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input class="form-control col-md-12" style="text-align: center" v-model="reviewName"/>
+                        <form class="md-form" action="'fileupload/' + reviewName" method="post" enctype="multipart/form-data" id="uploadFileForm">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input"  v-on:change="onChange" id="reviewFileInput" aria-describedby="inputGroupFileAddon01">
+                                    <label class="custom-file-label" for="reviewFileInput">Choose file</label>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" @click="createNewReview()">Submit</button>
+                        <button type="button" class="btn btn-primary" onclick="$('#uploadFileForm').submit()">Submit</button>
                     </div>
                     </div>
                 </div>
             </div>
-            <div class="row" id="reviews">
-                <div v-if="reviews.length > 0" class="col">
+            <div class="row" id="reviewfiles">
+                <div v-if="files.length > 0" class="col">
                     <ol>
-                        <li v-for="review in reviews">
-                            <a :href="'/ReviewOverview/reviewoverview.html?reviewName=' + review.Name"> {{ review.Name }} </a>
+                        <li v-for="file in files">
+                            <a :href="'/viewfile?fileName=' + file.Name"> {{ file.Name }} </a>
                         </li>
                     </ol>
                 </div>
                 <div v-else class="col">
-                    <p>There are no reviews.</p>
+                    <p>There are no modified files.</p>
                 </div>
             </div>
         </div>
-        <script src="index.js"></script>
+        <script src="reviewoverview.js"></script>
     </body>
 </html>
