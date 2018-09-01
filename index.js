@@ -5,9 +5,11 @@ const www = process.env.WWW || './www';
 const fs = require('fs');
 const path = require('path');
 const fileUpload = require('express-fileupload');
+const diff2html = require("diff2html").Diff2Html
 var filePaths = "C:\\code\\Reviews";
 
 app.use(fileUpload());
+app.use(express.static(__dirname + '/node_modules/'))
 app.use(express.static(www));
 console.log(`serving ${www}`);
 
@@ -65,4 +67,8 @@ app.post('/fileupload/:reviewName', (req, res) => {
   
     res.redirect('/ReviewOverview/reviewoverview.html?reviewName=' + req.params.reviewName);
   });
+});
+
+app.get('/retrivediff/:fileName', (req, res) => {
+
 });
