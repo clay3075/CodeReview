@@ -23,5 +23,20 @@ $(document).ready(function() {
                 }
             }
         });
+
+        var commentVue = new Vue({
+            el: '#commentVue',
+            data: {
+                comments: [1,1,1,1,1,1,1,1,1],
+                toggleTitle: 'Review Comments'
+            },
+            computed: {
+                numOfComments: function() {return this.comments.length + ' comments'}
+            }
+        });
+
+        var createCommentVue = new Vue({
+            el: '#createCommentVue'
+        });
     });
 });

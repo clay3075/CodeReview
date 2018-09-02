@@ -5,6 +5,7 @@
         <script src="/vue/dist/vue.js"></script>
         <link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/diff2html/dist/diff2html.css">
+        <link rel="stylesheet" type="text/css" href="reviewfile.css">
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -19,17 +20,48 @@
                     </h1>
                 </div>
             </div>
-            <div class="row" style="height:550px">
+            <div class="row" style="height:550px; overflow: scroll;">
                 <div id="diffContent" class="col">
                     <component :is="dynamicComponent" />
                 </div>
             </div>
             <div class="row pt-4">
                 <div id="commentVue" class="col">
-                    No Comments
+                    <div v-if="comments.length > 0" id="temp">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
+                            {{ toggleTitle }}
+                        </button>
+                        <div id="collapseComments" class="collapse show row" style="max-height: 500px; overflow: scroll;">
+                            <div class="col">
+                                <div class="page-header">
+                                    <h1><small class="float-right">{{ numOfComments }}</small> Comments </h1>
+                                </div> 
+                                <div v-for="comment in comments">
+                                    <div class="comments-list">
+                                        <div class="media">
+                                            <!-- <a class="media-left" href="#">
+                                                <img src="http://lorempixel.com/40/40/people/1/">
+                                            </a> -->
+                                            <div class="media-body">
+                                                
+                                                <h4 class="media-heading user_name">Baltej Singh</h4>
+                                                Wow! this is really great.
+                                                
+                                                <p><small><a href="">Like</a> - <a href="">Share</a></small></p>
+                                            </div>
+                                            <p class="float-right"><small>5 days ago</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-else>
+                        No comments.
+                    </div>
                 </div>
             </div>
-            <div class="row pt-3">
+            <div class="row pt-3 pb-5">
                 <div id="createCommentVue" class="col">
                     <div class="input-group">
                         <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>     
