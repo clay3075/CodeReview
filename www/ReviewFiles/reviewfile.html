@@ -14,14 +14,27 @@
         <div class="container">
             <div class="row">
                 <div class = "col jumbotron">
-                    <h1>
+                    <h1 id="pageTitle">
                         Modified Files
                     </h1>
                 </div>
             </div>
-            <div class="row">
-                <div id="diffContent">
-
+            <div class="row" style="height:550px">
+                <div id="diffContent" class="col">
+                    <component :is="dynamicComponent" />
+                </div>
+            </div>
+            <div class="row pt-4">
+                <div id="commentVue" class="col">
+                    No Comments
+                </div>
+            </div>
+            <div class="row pt-3">
+                <div id="createCommentVue" class="col">
+                    <div class="input-group">
+                        <textarea class="form-control custom-control" rows="3" style="resize:none"></textarea>     
+                        <span class="input-group-addon btn btn-primary">Comment</span>
+                    </div>
                 </div>
             </div>
         </div>
