@@ -19,7 +19,10 @@ $( document ).ready(function() {
                 files: files
             }
         });
-    });
+    }).fail(function(err) {
+        if (err.status == 401)
+          window.location = "/Verification/login.html"
+      });
 
     var modalVue = new Vue({
         el: '#modalVue',

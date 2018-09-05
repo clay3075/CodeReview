@@ -38,5 +38,8 @@ $(document).ready(function() {
         var createCommentVue = new Vue({
             el: '#createCommentVue'
         });
-    });
+    }).fail(function(err) {
+        if (err.status == 401)
+          window.location = "/Verification/login.html"
+      });
 });
