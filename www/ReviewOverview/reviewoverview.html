@@ -52,7 +52,7 @@
                 <div v-if="files.length > 0" class="col">
                     <ol>
                         <li v-for="file in files">
-                            <a :href="'/ReviewFiles/reviewfile.html?fileName=' + file.Name"> {{ file.Name }} </a>
+                            <a :href="'/ReviewFiles/reviewfile.html?reviewName=' + reviewName + '&fileName=' + file.Name"> {{ file.Name }} </a>
                         </li>
                     </ol>
                 </div>

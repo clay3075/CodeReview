@@ -9,10 +9,11 @@ function getUrlVars() {
 
 $(document).ready(function() {
     var fileName = getUrlVars()['fileName'];
+    var reviewName = getUrlVars()['reviewName'];
     console.log(fileName)
     $('#pageTitle').html(fileName);
 
-    $.get('/retrievediff/asdf', function(data) {
+    $.get('/retrievediff/'+reviewName+'/'+fileName, function(data) {
         var diffContent = new Vue({
             el: '#diffContent',
             computed: {
